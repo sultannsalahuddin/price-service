@@ -43,8 +43,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * - Cancelled batches immediately eligible for GC
  * - Copy-on-write creates temporary 2x memory during swap (brief duration)
  *
- * @author Your Name
- * @version 1.0.0
  */
 public class InMemoryPriceService implements PriceService {
 
