@@ -10,7 +10,7 @@ public class BatchRunTest {
 
         // Create a batch
         BatchRun batch = new BatchRun();
-        System.out.println("✅ Created batch: " + batch.getBatchId());
+        System.out.println(" Created batch: " + batch.getBatchId());
         System.out.println("   State: " + batch.getState());
 
         // Upload first chunk
@@ -19,7 +19,7 @@ public class BatchRunTest {
                 new PriceRecord("GOOGL", Instant.parse("2024-01-01T10:00:00Z"), 2800.0)
         );
         batch.addRecords(chunk1);
-        System.out.println("\n✅ Uploaded 2 records");
+        System.out.println("\n Uploaded 2 records");
         System.out.println("   Record count: " + batch.getRecordCount());
 
         // Upload second chunk with duplicate AAPL (newer time)
@@ -28,7 +28,7 @@ public class BatchRunTest {
                 new PriceRecord("MSFT", Instant.parse("2024-01-01T10:00:00Z"), 300.0)
         );
         batch.addRecords(chunk2);
-        System.out.println("\n✅ Uploaded 2 more records (including AAPL update)");
+        System.out.println("\n Uploaded 2 more records (including AAPL update)");
         System.out.println("   Record count: " + batch.getRecordCount() + " (should be 3, not 4)");
 
         // Get staged records
@@ -43,26 +43,26 @@ public class BatchRunTest {
         // Verify AAPL kept the newer price
         PriceRecord applePrice = staged.get("AAPL");
         if (applePrice.getPayload().equals(155.0)) {
-            System.out.println("\n✅ AAPL correctly kept newer price ($155)");
+            System.out.println("\n AAPL correctly kept newer price ($155)");
         } else {
-            System.out.println("\n❌ ERROR: AAPL has wrong price!");
+            System.out.println("\n ERROR: AAPL has wrong price!");
         }
 
         // Change state to completed
         batch.setState(BatchRun.BatchState.COMPLETED);
-        System.out.println("\n✅ Batch state changed to: " + batch.getState());
+        System.out.println("\n Batch state changed to: " + batch.getState());
 
         // Try to add records after completion (should fail)
         try {
             batch.addRecords(List.of(
                     new PriceRecord("TEST", Instant.now(), 100.0)
             ));
-            System.out.println("\n❌ ERROR: Should not allow upload after completion!");
+            System.out.println("\n ERROR: Should not allow upload after completion!");
         } catch (IllegalStateException e) {
-            System.out.println("\n✅ Correctly prevented upload after completion");
+            System.out.println("\n Correctly prevented upload after completion");
             System.out.println("   Error: " + e.getMessage());
         }
 
-        System.out.println("\n🎉 All BatchRun tests passed!");
+        System.out.println("\n All BatchRun tests passed!");
     }
 }

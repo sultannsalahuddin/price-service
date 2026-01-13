@@ -214,10 +214,6 @@ public class InMemoryPriceService implements PriceService {
     /**
      * Atomically publishes prices using copy-on-write semantics.
      *
-     * ============================================================================
-     * THIS IS THE MOST IMPORTANT METHOD - READ CAREFULLY! 🎯
-     * ============================================================================
-     *
      * DESIGN DECISION: Create new map instead of updating existing one.
      *
      * Why Copy-on-Write?

@@ -11,14 +11,14 @@ import java.util.Optional;
 public class WorkingDemo {
 
     public static void main(String[] args) {
-        System.out.println("🚀 InMemoryPriceService Demo\n");
+        System.out.println(" InMemoryPriceService Demo\n");
 
         // Create the service
         PriceService service = new InMemoryPriceService();
-        System.out.println("✅ Service initialized\n");
+        System.out.println(" Service initialized\n");
 
         // ========== PRODUCER: Batch 1 ==========
-        System.out.println("📤 PRODUCER: Starting Batch 1");
+        System.out.println(" PRODUCER: Starting Batch 1");
         String batch1 = service.startBatchRun();
         System.out.println("   Batch ID: " + batch1);
 
@@ -43,7 +43,7 @@ public class WorkingDemo {
         System.out.println("   ✓ Batch completed - all prices published!\n");
 
         // ========== CONSUMER: Read Prices ==========
-        System.out.println("📥 CONSUMER: Reading prices");
+        System.out.println(" CONSUMER: Reading prices");
 
         Optional<PriceRecord> applePrice = service.getLastPrice("AAPL");
         if (applePrice.isPresent()) {
@@ -64,7 +64,7 @@ public class WorkingDemo {
         System.out.println("   Total instruments: " + service.getPriceCount() + "\n");
 
         // ========== PRODUCER: Batch 2 (Concurrent) ==========
-        System.out.println("📤 PRODUCER: Starting Batch 2");
+        System.out.println(" PRODUCER: Starting Batch 2");
         String batch2 = service.startBatchRun();
 
         List<PriceRecord> batch2Records = List.of(
@@ -76,7 +76,7 @@ public class WorkingDemo {
         System.out.println("   ✓ Batch 2 completed\n");
 
         // ========== CONSUMER: Read Updated Prices ==========
-        System.out.println("📥 CONSUMER: Reading updated prices");
+        System.out.println(" CONSUMER: Reading updated prices");
 
         applePrice = service.getLastPrice("AAPL");
         if (applePrice.isPresent()) {
@@ -92,12 +92,12 @@ public class WorkingDemo {
         System.out.println("   Total instruments: " + service.getPriceCount() + "\n");
 
         // ========== ERROR HANDLING ==========
-        System.out.println("⚠️  ERROR HANDLING DEMO");
+        System.out.println("⚠  ERROR HANDLING DEMO");
 
         // Try to upload to completed batch
         try {
             service.uploadChunk(batch1, chunk1);
-            System.out.println("   ❌ Should have thrown exception!");
+            System.out.println("    Should have thrown exception!");
         } catch (IllegalArgumentException e) {
             System.out.println("   ✓ Correctly prevented upload to non-existent batch");
         }
@@ -107,7 +107,7 @@ public class WorkingDemo {
         service.completeBatchRun(batch3);
         try {
             service.completeBatchRun(batch3);
-            System.out.println("   ❌ Should have thrown exception!");
+            System.out.println("    Should have thrown exception!");
         } catch (Exception e) {
             System.out.println("   ✓ Correctly prevented double completion");
         }
@@ -121,6 +121,6 @@ public class WorkingDemo {
         Optional<PriceRecord> testPrice = service.getLastPrice("TEST");
         System.out.println("   ✓ Cancelled batch - TEST price exists: " + testPrice.isPresent());
 
-        System.out.println("\n🎉 Demo complete! All features working!");
+        System.out.println("\n Demo complete! All features working!");
     }
 }

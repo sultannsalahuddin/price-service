@@ -546,7 +546,7 @@ class InMemoryPriceServiceTest {
         long readTime = System.nanoTime() - startTime;
 
         // Assert & Report
-        System.out.println("\n📊 PERFORMANCE METRICS:");
+        System.out.println("\n PERFORMANCE METRICS:");
         System.out.println("   Upload + Completion: " + (uploadTime / 1_000_000) + " ms");
         System.out.println("   10,000 Reads: " + (readTime / 1_000_000) + " ms");
         System.out.println("   Avg Read Time: " + (readTime / instrumentCount) + " ns");
