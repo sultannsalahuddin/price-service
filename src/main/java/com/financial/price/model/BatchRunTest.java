@@ -33,7 +33,7 @@ public class BatchRunTest {
 
         // Get staged records
         Map<String, PriceRecord> staged = batch.getStagedRecords();
-        System.out.println("\n📊 Staged Records:");
+        System.out.println("\n Staged Records:");
         for (Map.Entry<String, PriceRecord> entry : staged.entrySet()) {
             PriceRecord record = entry.getValue();
             System.out.println("   " + entry.getKey() + ": " +
