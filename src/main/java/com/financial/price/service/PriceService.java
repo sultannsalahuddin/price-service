@@ -21,8 +21,6 @@ import java.util.Optional;
  * Consumers:
  *   - getLastPrice(id) → returns latest price from completed batches only
  *
- * @author Your Name
- * @version 1.0.0
  */
 public interface PriceService {
 

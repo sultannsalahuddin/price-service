@@ -612,5 +612,3 @@ Design patterns inspired by:
 - Production financial data systems
 
 ---
-
-**Built with ❤️ using Java 17, Maven, and JUnit 5**
